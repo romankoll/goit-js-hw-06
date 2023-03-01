@@ -13,21 +13,16 @@ const images = [
   },
 ];
 
-const gallaryEls = document.querySelector(".gallery");
+const gallery = document.querySelector(".gallery");
 
-const createGallary = images.map((item) => {
-  const liEl = document.createElement("li");
-  const imgEl = document.createElement("img");
-  imgEl.src = item.url;
-  imgEl.alt = item.alt;
+const galleryItems = images
+  .map(
+    ({ url, alt }) =>
+      `<li class="gallery-item"><img src="${url}" alt="${alt}" class="gallery-image"></li>`
+  )
+  .join("");
 
-  liEl.append(imgEl);
-  return liEl;
-});
-
-gallaryEls.append(...createGallary);
-
-//gallaryEls.insertAdjacentElement("afterbegin", ...createGallary);
+gallery.insertAdjacentHTML("beforeend", galleryItems);
 
 //insertAdjacentHTML() разбирает указанный текст как HTML
 //или XML и вставляет полученные узлы(nodes) в DOM дерево в
